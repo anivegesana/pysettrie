@@ -21,7 +21,7 @@ setup(
     description='Efficient storage and querying of sets of sets using the trie data structure',
     packages=['settrie'],
     install_requires=['sortedcontainers'],
-    ext_modules = cythonize(Extension("settrie", sources=["settrie/settrie.pyx"], extra_compile_args=extra_compile_args), language_level=3),
+    ext_modules = cythonize(Extension("settrie.__init__", sources=["settrie/__init__.pyx"], extra_compile_args=extra_compile_args), language_level=3),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
