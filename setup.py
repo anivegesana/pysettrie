@@ -1,10 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-try:
-    from setuptools import setup
-except ImportError :
-    raise ImportError("setuptools module required, please go to https://pypi.python.org/pypi/setuptools and follow the instructions for installing setuptools")
+import os
+
+from setuptools import setup, Extension
+from Cython.Build import cythonize
+
+if os.name == 'nt':
+    # Windows compile time arguments
+    extra_compile_args = ["/std:c++17"]
+else:
+    # Mac/Linux GCC compile time arguments
+    extra_compile_args = ["-std=c++17", "-g", "-O3", "-fPIC"]
 
 setup(
     name='pysettrie',
@@ -14,6 +21,7 @@ setup(
     description='Efficient storage and querying of sets of sets using the trie data structure',
     packages=['settrie'],
     install_requires=['sortedcontainers'],
+    ext_modules = cythonize(Extension("settrie", sources=["settrie/settrie.pyx"], extra_compile_args=extra_compile_args), language_level=3),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
