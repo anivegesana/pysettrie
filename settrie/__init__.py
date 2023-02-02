@@ -47,6 +47,7 @@ class SetTrie:
 
     class Node:
         """Node object used by SetTrie."""
+        __slots__ = ('children', 'flag_last', 'data')
 
         def __init__(self, data=None):
             # child nodes a.k.a. children
@@ -370,6 +371,7 @@ class SetTrieMap:
         """Node object used by SetTrieMap. You probably don't need to use it
            from the outside.
         """
+        __slots__ = ('children', 'flag_last', 'data', 'value')
 
         def __init__(self, data=None, value=None):
             # child nodes a.k.a. children
